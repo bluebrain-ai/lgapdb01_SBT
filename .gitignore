@@ -5,4 +5,7 @@
 /.vscode
 /lgapdb01_SBT_Compile.log
 /log
-/target
+*.class
+*.lst
+target/formatter-maven-cache.properties
+target/maven-archiver/pom.properties

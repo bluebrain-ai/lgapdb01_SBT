@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import io.swagger.annotations.ApiResponses;
+
 import com.bluescript.demo.jpa.IInsertPolicyJpa;
 import com.bluescript.demo.jpa.ISelectPolicyLastChangedJpa;
 import com.bluescript.demo.jpa.IidentyValLocal;
@@ -213,20 +214,20 @@ public class Lgapdb01 {
         } catch (ConstraintViolationException ex) {
             log.error(ex);
             dfhcommarea.setCaReturnCode(70);
-           // writeErrorMessage();
+            // writeErrorMessage();
         } catch (Exception e) {
             log.error(e);
             dfhcommarea.setCaReturnCode(90);
-           // writeErrorMessage();
+            // writeErrorMessage();
         }
         /*
          * EXEC SQL SET :DB2-POLICYNUM-INT = IDENTITY_VAL_LOCAL() END-EXEC
          */
 
-        db2PolicynumInt = ThreadLocalRandom.current().nextInt(1000,10000 + 1);
+        db2PolicynumInt = ThreadLocalRandom.current().nextInt(1000, 10000 + 1);
         double rand = identyValLocal.getDb2PolicynumInt();
 
-        log.warn("db2PolicynumInt:" + rand );
+        log.warn("db2PolicynumInt:" + rand);
         dfhcommarea.getCaPolicyRequest().setCaPolicyNum(db2PolicynumInt);
         emVariable.setEmPolNum((int) dfhcommarea.getCaPolicyRequest().getCaPolicyNum());
 
