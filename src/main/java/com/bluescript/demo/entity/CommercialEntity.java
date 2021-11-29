@@ -55,7 +55,9 @@ public class CommercialEntity implements Serializable {
     @Column(name = "CRIMEPREMIUM")
     private String crimepremium;
     @Column(name = "FLOODPERIL")
-    private String floodperil;
+    private String floodperil;    
+    @Column(name= "FLOODPREMIUM")
+    private String floodpremium;
     @Column(name = "WEATHERPERIL")
     private String weatherperil;
     @Column(name = "WEATHERPREMIUM")

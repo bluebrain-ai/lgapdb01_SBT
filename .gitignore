@@ -9,3 +9,5 @@
 *.lst
 target/formatter-maven-cache.properties
 target/maven-archiver/pom.properties
+/target/
+/bin/

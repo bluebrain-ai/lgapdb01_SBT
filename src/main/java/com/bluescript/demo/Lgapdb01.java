@@ -208,7 +208,9 @@ public class Lgapdb01 {
                     db2InIntegers.getDb2CustomernumInt(),
                     dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaIssueDate(),
                     dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaExpiryDate(), db2Policytype,
+                    String.valueOf(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"))),
                     db2InIntegers.getDb2BrokeridInt(),
+                    
                     dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaBrokersref(),
                     db2InIntegers.getDb2PaymentInt());
         } catch (ConstraintViolationException ex) {
@@ -224,10 +226,9 @@ public class Lgapdb01 {
          * EXEC SQL SET :DB2-POLICYNUM-INT = IDENTITY_VAL_LOCAL() END-EXEC
          */
 
-        db2PolicynumInt = ThreadLocalRandom.current().nextInt(1000, 10000 + 1);
-        double rand = identyValLocal.getDb2PolicynumInt();
+         db2PolicynumInt = identyValLocal.getDb2PolicynumInt();
 
-        log.warn("db2PolicynumInt:" + rand);
+        log.warn("db2PolicynumInt:" + db2PolicynumInt);
         dfhcommarea.getCaPolicyRequest().setCaPolicyNum(db2PolicynumInt);
         emVariable.setEmPolNum((int) dfhcommarea.getCaPolicyRequest().getCaPolicyNum());
 
@@ -292,7 +293,7 @@ public class Lgapdb01 {
     public void insertHouse() {
         log.debug("MethodinsertHousestarted..");
         db2InIntegers.setDb2HValueInt(dfhcommarea.getCaPolicyRequest().getCaHouse().getCaHValue());
-        db2InIntegers.setDb2HBedroomsSint(dfhcommarea.getCaPolicyRequest().getCaHouse().getCaHValue());
+        db2InIntegers.setDb2HBedroomsSint(dfhcommarea.getCaPolicyRequest().getCaHouse().getCaHBedrooms());
         emVariable.setEmSqlreq(" INSERT HOUSE ");
         log.warn("db2PolicynumInt:" + db2PolicynumInt);
         try {
