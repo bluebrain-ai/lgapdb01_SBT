@@ -1,6 +1,7 @@
 package com.bluescript.demo;
 
 import java.net.URI;
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -208,9 +209,8 @@ public class Lgapdb01 {
                     db2InIntegers.getDb2CustomernumInt(),
                     dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaIssueDate(),
                     dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaExpiryDate(), db2Policytype,
-                    String.valueOf(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"))),
-                    db2InIntegers.getDb2BrokeridInt(),
-                    
+                    LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")), db2InIntegers.getDb2BrokeridInt(),
+
                     dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaBrokersref(),
                     db2InIntegers.getDb2PaymentInt());
         } catch (ConstraintViolationException ex) {
@@ -226,14 +226,14 @@ public class Lgapdb01 {
          * EXEC SQL SET :DB2-POLICYNUM-INT = IDENTITY_VAL_LOCAL() END-EXEC
          */
 
-         db2PolicynumInt = identyValLocal.getDb2PolicynumInt();
+        db2PolicynumInt = identyValLocal.getDb2PolicynumInt();
 
         log.warn("db2PolicynumInt:" + db2PolicynumInt);
         dfhcommarea.getCaPolicyRequest().setCaPolicyNum(db2PolicynumInt);
         emVariable.setEmPolNum((int) dfhcommarea.getCaPolicyRequest().getCaPolicyNum());
 
         try {
-            String lastChanged = selectPolicyLastDate.getPolicyByDb2PolicynumInt(db2PolicynumInt);
+            Timestamp lastChanged = selectPolicyLastDate.getPolicyByDb2PolicynumInt(db2PolicynumInt);
             dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().setCaLastchanged(lastChanged);
 
         } catch (Exception e) {

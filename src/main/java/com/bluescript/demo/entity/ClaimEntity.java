@@ -1,6 +1,8 @@
 package com.bluescript.demo.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,22 +21,22 @@ import lombok.Setter;
 
 @Data
 @RequiredArgsConstructor
-// Schema : CLAIM
+// Schema : CLAIM -- sequence required
 public class ClaimEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "CLAIMNUMBER")
-    private String claimNumber;
+    private int claimNumber;
     @Column(name = "POLICYNUMBER")
-    private String policynumber;
+    private int policynumber;
     @Column(name = "CLAIMDATE")
-    private String claimdate;
+    private Date claimdate;
     @Column(name = "PAID")
-    private String paid;
+    private int paid;
     @Column(name = "VALUE")
-    private String value;
+    private int value;
     @Column(name = "CAUSE")
     private String cause;
     @Column(name = "OBSERVATIONS")

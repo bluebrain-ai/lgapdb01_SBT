@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 @Component
 @Entity
 @Table(name = "COMMERCIAL")
@@ -27,13 +30,13 @@ public class CommercialEntity implements Serializable {
 
     @Id
     @Column(name = "POLICYNUMBER")
-    private String policyNumber;
+    private int policyNumber;
     @Column(name = "REQUESTDATE")
-    private String make;
+    private Timestamp requestDate;
     @Column(name = "STARTDATE")
-    private String model;
+    private Date startDate;
     @Column(name = "RENEWALDATE")
-    private String renewaldate;
+    private Date renewaldate;
     @Column(name = "ADDRESS")
     private String address;
     @Column(name = "ZIPCODE")
@@ -47,23 +50,23 @@ public class CommercialEntity implements Serializable {
     @Column(name = "PROPERTYTYPE")
     private String propertytype;
     @Column(name = "FIREPERIL")
-    private String fireperil;
+    private int fireperil;
     @Column(name = "FIREPREMIUM")
-    private String firepremium;
+    private int firepremium;
     @Column(name = "CRIMEPERIL")
-    private String crimerperil;
+    private int crimerperil;
     @Column(name = "CRIMEPREMIUM")
-    private String crimepremium;
+    private int crimepremium;
     @Column(name = "FLOODPERIL")
-    private String floodperil;    
-    @Column(name= "FLOODPREMIUM")
-    private String floodpremium;
+    private int floodperil;
+    @Column(name = "FLOODPREMIUM")
+    private int floodpremium;
     @Column(name = "WEATHERPERIL")
-    private String weatherperil;
+    private int weatherperil;
     @Column(name = "WEATHERPREMIUM")
-    private String weatherpremium;
+    private int weatherpremium;
     @Column(name = "STATUS")
-    private String status;
+    private int status;
     @Column(name = "REJECTIONREASON")
     private String rejectionreason;
 

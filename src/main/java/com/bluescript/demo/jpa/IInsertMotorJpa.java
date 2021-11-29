@@ -1,5 +1,7 @@
 package com.bluescript.demo.jpa;
 
+import java.sql.Date;
+
 import javax.persistence.QueryHint;
 import javax.transaction.Transactional;
 
@@ -19,6 +21,6 @@ public interface IInsertMotorJpa extends JpaRepository<MotorEntity, String> {
             @Param("caMMake") String caMMake, @Param("caMModel") String caMModel,
             @Param("db2MValueInt") int db2MValueInt, @Param("caMRegnumber") String caMRegnumber,
             @Param("caMColour") String caMColour, @Param("db2MCcSint") int db2MCcSint,
-            @Param("caMManufactured") String caMManufactured, @Param("db2MPremiumInt") int db2MPremiumInt,
+            @Param("caMManufactured") Date caMManufactured, @Param("db2MPremiumInt") int db2MPremiumInt,
             @Param("db2MAccidentsInt") int db2MAccidentsInt);
 }

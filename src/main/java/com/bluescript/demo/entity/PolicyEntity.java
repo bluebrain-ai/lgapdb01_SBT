@@ -1,6 +1,9 @@
 package com.bluescript.demo.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,19 +37,22 @@ public class PolicyEntity implements Serializable {
     @Column(name = "POLICYNUMBER")
     private int policyNumber;
     @Column(name = "CUSTOMERNUMBER")
-    private String customernumber;
+    private int customernumber;
     @Column(name = "ISSUEDATE")
-    private String issuedate;
+    private Date issuedate;
     @Column(name = "EXPIRYDATE")
-    private String expirydate;
+    private Date expirydate;
     @Column(name = "POLICYTYPE")
     private String policytype;
     @Column(name = "LASTCHANGED")
-    private String lastchanged;
+    private Date lastchanged;
     @Column(name = "BROKERID")
-    private String brokerid;
+    private int brokerid;
     @Column(name = "BROKERSREFERENCE")
     private String brokersreference;
     @Column(name = "PAYMENT")
-    private String payment;
+    private int payment;
+    @Column(name = "COMMISSION")
+    private int commission;
+
 }
