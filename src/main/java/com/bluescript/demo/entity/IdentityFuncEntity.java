@@ -1,4 +1,4 @@
-package com.bluescript.demo.jpa;
+package com.bluescript.demo.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

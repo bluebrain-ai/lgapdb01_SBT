@@ -36,6 +36,8 @@ public class MotorEntity implements Serializable {
     private String value;
     @Column(name = "REGNUMBER")
     private String regnumber;
+    @Column(name = "COLOUR")
+    private String colour;
     @Column(name = "CC")
     private String cc;
     @Column(name = "YEAROFMANUFACTURE")

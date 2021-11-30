@@ -41,7 +41,7 @@ import io.swagger.annotations.ApiResponses;
 
 import com.bluescript.demo.jpa.IInsertPolicyJpa;
 import com.bluescript.demo.jpa.ISelectPolicyLastChangedJpa;
-import com.bluescript.demo.jpa.IidentyValLocal;
+import com.bluescript.demo.jpa.IidentyValLocalFunc;
 import com.bluescript.demo.jpa.IInsertEndowmentJpa;
 import com.bluescript.demo.jpa.IInsertEndowment1Jpa;
 import com.bluescript.demo.jpa.IInsertHouseJpa;
@@ -124,7 +124,7 @@ public class Lgapdb01 {
     private String caErrorMsg;
 
     @Autowired
-    private IidentyValLocal identyValLocal;
+    private IidentyValLocalFunc identyValLocal;
 
     @PostMapping("/lgapdb01")
     public ResponseEntity<Dfhcommarea> mainLine(@RequestBody Dfhcommarea payload) {
@@ -187,8 +187,7 @@ public class Lgapdb01 {
         try {
             WebClient webclientBuilder = WebClient.create(lgapvs01_host);
             Mono<Dfhcommarea> lgapvs01Resp = webclientBuilder.post().uri(lgapvs01_URI)
-                    .body(Mono.just(dfhcommarea), Dfhcommarea.class).retrieve().bodyToMono(Dfhcommarea.class)
-                    .timeout(Duration.ofMillis(10_000));
+                    .body(Mono.just(dfhcommarea), Dfhcommarea.class).retrieve().bodyToMono(Dfhcommarea.class);// .timeout(Duration.ofMillis(10_000));
             dfhcommarea = lgapvs01Resp.block();
         } catch (Exception e) {
             log.error(e);
@@ -198,19 +197,20 @@ public class Lgapdb01 {
     }
 
     public void insertPolicy() {
-        log.debug("MethodinsertPolicystarted..");
+        log.warn("MethodinsertPolicystarted..");
 
         db2InIntegers.setDb2BrokeridInt((int) dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaBrokerid());
         db2InIntegers.setDb2PaymentInt(dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaPayment());
         emVariable.setEmSqlreq(" INSERT POLICY");
         try {
-            InsertPolicyJpa.insertPolicyForDb2CustomernumIntAndCaIssueDateAndCaExpiryDate(
+            int count = InsertPolicyJpa.insertPolicyForDb2CustomernumIntAndCaIssueDateAndCaExpiryDate(
                     db2InIntegers.getDb2CustomernumInt(),
                     dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaIssueDate(),
                     dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaExpiryDate(), db2Policytype,
-                    db2InIntegers.getDb2BrokeridInt(),
+                    LocalDate.now().toString(), db2InIntegers.getDb2BrokeridInt(),
                     dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaBrokersref(),
                     db2InIntegers.getDb2PaymentInt());
+            log.warn("count insert:", count);
         } catch (ConstraintViolationException ex) {
             log.error(ex);
             dfhcommarea.setCaReturnCode(70);
@@ -224,9 +224,10 @@ public class Lgapdb01 {
          * EXEC SQL SET :DB2-POLICYNUM-INT = IDENTITY_VAL_LOCAL() END-EXEC
          */
 
-        db2PolicynumInt = ThreadLocalRandom.current().nextInt(1000, 10000 + 1);
-        double rand = identyValLocal.getDb2PolicynumInt();
-
+        // db2PolicynumInt = ThreadLocalRandom.current().nextInt(1000, 10000 + 1);
+        double rand = identyValLocal.getDb2PolicynumInt() * 1000;
+        db2PolicynumInt = (int) rand;
+        log.warn("db2PolicynumInt:" + db2PolicynumInt);
         log.warn("db2PolicynumInt:" + rand);
         dfhcommarea.getCaPolicyRequest().setCaPolicyNum(db2PolicynumInt);
         emVariable.setEmPolNum((int) dfhcommarea.getCaPolicyRequest().getCaPolicyNum());
@@ -422,8 +423,7 @@ public class Lgapdb01 {
         WebClient webclientBuilder = WebClient.create(LGSTSQ_HOST);
         try {
             Mono<ErrorMsg> lgstsqResp = webclientBuilder.post().uri(LGSTSQ_URI)
-                    .body(Mono.just(errorMsg), ErrorMsg.class).retrieve().bodyToMono(ErrorMsg.class)
-                    .timeout(Duration.ofMillis(10_000));
+                    .body(Mono.just(errorMsg), ErrorMsg.class).retrieve().bodyToMono(ErrorMsg.class);// .timeout(Duration.ofMillis(10_000));
             errorMsg = lgstsqResp.block();
         } catch (Exception e) {
             log.error(e);
@@ -432,8 +432,7 @@ public class Lgapdb01 {
             if (eibcalen < 91) {
                 try {
                     Mono<ErrorMsg> lgstsqResp = webclientBuilder.post().uri(LGSTSQ_URI)
-                            .body(Mono.just(errorMsg), ErrorMsg.class).retrieve().bodyToMono(ErrorMsg.class)
-                            .timeout(Duration.ofMillis(10_000));
+                            .body(Mono.just(errorMsg), ErrorMsg.class).retrieve().bodyToMono(ErrorMsg.class);// .timeout(Duration.ofMillis(10_000));
                     errorMsg = lgstsqResp.block();
                 } catch (Exception e) {
                     log.error(e);
@@ -442,8 +441,7 @@ public class Lgapdb01 {
             } else {
                 try {
                     Mono<String> lgstsqResp = webclientBuilder.post().uri(LGSTSQ_URI)
-                            .body(Mono.just(caErrorMsg), String.class).retrieve().bodyToMono(String.class)
-                            .timeout(Duration.ofMillis(10_000));
+                            .body(Mono.just(caErrorMsg), String.class).retrieve().bodyToMono(String.class);// .timeout(Duration.ofMillis(10_000));
                     caErrorMsg = lgstsqResp.block();
                 } catch (Exception e) {
                     log.error(e);

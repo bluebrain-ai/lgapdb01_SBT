@@ -3,6 +3,8 @@ package com.bluescript.demo.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -26,6 +28,7 @@ public class PolicyEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "POLICYNUMBER")
     private int policyNumber;
     @Column(name = "CUSTOMERNUMBER")
@@ -40,7 +43,7 @@ public class PolicyEntity implements Serializable {
     private String lastchanged;
     @Column(name = "BROKERID")
     private String brokerid;
-    @Column(name = "BROKERREFERENCE")
+    @Column(name = "BROKERSREFERENCE")
     private String brokerreference;
     @Column(name = "PAYMENT")
     private String payment;
