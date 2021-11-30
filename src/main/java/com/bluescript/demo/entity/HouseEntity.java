@@ -27,13 +27,13 @@ public class HouseEntity implements Serializable {
 
     @Id
     @Column(name = "POLICYNUMBER")
-    private String policyNumber;
+    private int policyNumber;
     @Column(name = "PROPERTYTYPE")
     private String propertytype;
     @Column(name = "BEDROOMS")
-    private String bedrooms;
+    private int bedrooms;
     @Column(name = "VALUE")
-    private String value;
+    private int value;
     @Column(name = "HOUSENAME")
     private String housename;
     @Column(name = "HOUSENUMBER")

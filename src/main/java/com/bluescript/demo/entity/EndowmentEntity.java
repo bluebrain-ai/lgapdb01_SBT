@@ -27,7 +27,7 @@ public class EndowmentEntity implements Serializable {
 
     @Id
     @Column(name = "POLICYNUMBER")
-    private String policyNumber;
+    private int policyNumber;
     @Column(name = "WITHPROFITS")
     private String withprofits;
     @Column(name = "EQUITIES")
@@ -37,9 +37,9 @@ public class EndowmentEntity implements Serializable {
     @Column(name = "FUNDNAME")
     private String fundname;
     @Column(name = "TERM")
-    private String term;
+    private int term;
     @Column(name = "SUMASSURED")
-    private String sumassured;
+    private int sumassured;
     @Column(name = "LIFEASSURED")
     private String lifeassured;
     @Column(name = "PADDINGDATA")

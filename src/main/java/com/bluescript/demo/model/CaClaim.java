@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 import java.util.*;
+import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 public class CaClaim {
     private long caCNum;
-    private String caCDate;
+    private Date caCDate;
     private int caCPaid;
     private int caCValue;
     private String caCCause;
@@ -21,7 +22,7 @@ public class CaClaim {
     private String caCFiller;
 
     public String toFixedWidthString() {
-        return caCNum + caCDate + caCPaid + caCValue + caCCause + caCObservations + caCFiller;
+        return String.valueOf(caCNum) + caCDate + caCPaid + caCValue + caCCause + caCObservations + caCFiller;
     }
 
 }

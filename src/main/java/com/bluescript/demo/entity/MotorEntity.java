@@ -1,6 +1,9 @@
 package com.bluescript.demo.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -27,23 +30,24 @@ public class MotorEntity implements Serializable {
 
     @Id
     @Column(name = "POLICYNUMBER")
-    private String policyNumber;
+    private int policyNumber;
     @Column(name = "MAKE")
     private String make;
     @Column(name = "MODEL")
     private String model;
     @Column(name = "VALUE")
-    private String value;
+    private int value;
     @Column(name = "REGNUMBER")
     private String regnumber;
     @Column(name = "COLOUR")
     private String colour;
     @Column(name = "CC")
-    private String cc;
+    private int cc;
     @Column(name = "YEAROFMANUFACTURE")
-    private String yearofmanufacture;
+    private Date yearofmanufacture;
     @Column(name = "PREMIUM")
-    private String premium;
+    private int premium;
     @Column(name = "ACCIDENTS")
-    private String accidents;
+    private int accidents;
+
 }

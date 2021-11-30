@@ -1,5 +1,8 @@
 package com.bluescript.demo.jpa;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import javax.persistence.QueryHint;
 import javax.transaction.Transactional;
 import javax.xml.bind.annotation.XmlElement.DEFAULT;
@@ -14,11 +17,11 @@ import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 public interface IInsertPolicyJpa extends JpaRepository<PolicyEntity, Integer> {
     @Transactional
-    @Modifying(clearAutomatically = true) // POLICYNUMBER ,
-    @Query(value = "INSERT INTO POLICY (CUSTOMERNUMBER , ISSUEDATE , EXPIRYDATE , POLICYTYPE , LASTCHANGED , BROKERID , BROKERSREFERENCE , PAYMENT ) VALUES (default,:db2CustomernumInt,:caIssueDate , :caExpiryDate , :db2Policytype , :db2CurrentTimeStamp , :db2BrokeridInt , :caBrokersref , :db2PaymentInt )", nativeQuery = true)
-    int insertPolicyForDb2CustomernumIntAndCaIssueDateAndCaExpiryDate(@Param("db2CustomernumInt") int db2CustomernumInt,
-            @Param("caIssueDate") String caIssueDate, @Param("caExpiryDate") String caExpiryDate,
-            @Param("db2Policytype") String db2Policytype, @Param("db2CurrentTimeStamp") String db2CurrentTimeStamp,
-            @Param("db2BrokeridInt") int db2BrokeridInt, @Param("caBrokersref") String caBrokersref,
-            @Param("db2PaymentInt") int db2PaymentInt);
+    @Modifying(clearAutomatically = true)
+    @Query(value = "INSERT INTO POLICY ( POLICYNUMBER, CUSTOMERNUMBER , ISSUEDATE , EXPIRYDATE , POLICYTYPE , LASTCHANGED , BROKERID , BROKERSREFERENCE , PAYMENT ) VALUES (DEFAULT, :db2CustomernumInt , :caIssueDate , :caExpiryDate , :db2Policytype , :db2CurrentTimestamp , :db2BrokeridInt , :caBrokersref , :db2PaymentInt )", nativeQuery = true)
+    void insertPolicyForDb2CustomernumIntAndCaIssueDateAndCaExpiryDate(
+            @Param("db2CustomernumInt") int db2CustomernumInt, @Param("caIssueDate") Date caIssueDate,
+            @Param("caExpiryDate") Date caExpiryDate, @Param("db2Policytype") String db2Policytype,
+            @Param("db2CurrentTimestamp") String timeStamp, @Param("db2BrokeridInt") int db2BrokeridInt,
+            @Param("caBrokersref") String caBrokersref, @Param("db2PaymentInt") int db2PaymentInt);
 }
