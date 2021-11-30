@@ -211,7 +211,7 @@ public class Lgapdb01 {
                     LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")), db2InIntegers.getDb2BrokeridInt(),
                     dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaBrokersref(),
                     db2InIntegers.getDb2PaymentInt());
-          
+
         } catch (ConstraintViolationException ex) {
             log.error(ex);
             dfhcommarea.setCaReturnCode(70);
