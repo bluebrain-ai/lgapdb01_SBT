@@ -28,15 +28,15 @@ public class ClaimEntity implements Serializable {
 
     @Id
     @Column(name = "CLAIMNUMBER")
-    private int claimNumber;
+    private Integer claimNumber;
     @Column(name = "POLICYNUMBER")
-    private int policynumber;
+    private Integer policynumber;
     @Column(name = "CLAIMDATE")
     private Date claimdate;
     @Column(name = "PAID")
-    private int paid;
+    private Integer paid;
     @Column(name = "VALUE")
-    private int value;
+    private Integer value;
     @Column(name = "CAUSE")
     private String cause;
     @Column(name = "OBSERVATIONS")

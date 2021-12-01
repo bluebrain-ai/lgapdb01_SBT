@@ -18,7 +18,7 @@ public interface IInsertCommercialJpa extends JpaRepository<CommercialEntity, St
     @Modifying(clearAutomatically = true)
     @Query(value = "INSERT INTO COMMERCIAL ( POLICYNUMBER , REQUESTDATE , STARTDATE , RENEWALDATE , ADDRESS , ZIPCODE , LATITUDEN , LONGITUDEW , CUSTOMER , PROPERTYTYPE , FIREPERIL , FIREPREMIUM , CRIMEPERIL , CRIMEPREMIUM , FLOODPERIL , FLOODPREMIUM , WEATHERPERIL , WEATHERPREMIUM , STATUS , REJECTIONREASON ) VALUES ( :db2PolicynumInt , :caLastchanged , :caIssueDate , :caExpiryDate , :caBAddress , :caBPostcode , :caBLatitude , :caBLongitude , :caBCustomer , :caBProptype , :db2BFireperilInt , :db2BFirepremiumInt , :db2BCrimeperilInt , :db2BCrimepremiumInt , :db2BFloodperilInt , :db2BFloodpremiumInt , :db2BWeatherperilInt , :db2BWeatherpremiumInt , :db2BStatusInt , :caBRejectreason )", nativeQuery = true)
     void insertCommercialForDb2PolicynumIntAndCaLastchangedAndCaIssueDate(@Param("db2PolicynumInt") int db2PolicynumInt,
-            @Param("caLastchanged") Timestamp caLastchanged, @Param("caIssueDate") Date caIssueDate,
+            @Param("caLastchanged") String caLastchanged, @Param("caIssueDate") Date caIssueDate,
             @Param("caExpiryDate") Date caExpiryDate, @Param("caBAddress") String caBAddress,
             @Param("caBPostcode") String caBPostcode, @Param("caBLatitude") String caBLatitude,
             @Param("caBLongitude") String caBLongitude, @Param("caBCustomer") String caBCustomer,

@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.QueryHints;
 public interface IidentyValLocalFunc extends JpaRepository<IdentityFuncEntity, Double> {
 
     // @Query(value = "SELECT IDENTITY_VAL_LOCAL() FROM DUAL", nativeQuery = true)
-    @Query(value = "SELECT CURRVAL('SEQ_POLICY') FROM DUAL", nativeQuery = true)
+    @Query(value = "SELECT CURRVAL('POLICY_SEQUENCE') FROM DUAL", nativeQuery = true)
     int getDb2PolicynumInt();
 }

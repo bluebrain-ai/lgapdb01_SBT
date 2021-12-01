@@ -30,7 +30,7 @@ public class CommercialEntity implements Serializable {
 
     @Id
     @Column(name = "POLICYNUMBER")
-    private int policyNumber;
+    private Integer policyNumber;
     @Column(name = "REQUESTDATE")
     private Timestamp requestDate;
     @Column(name = "STARTDATE")
@@ -50,23 +50,23 @@ public class CommercialEntity implements Serializable {
     @Column(name = "PROPERTYTYPE")
     private String propertytype;
     @Column(name = "FIREPERIL")
-    private int fireperil;
+    private Integer fireperil;
     @Column(name = "FIREPREMIUM")
-    private int firepremium;
+    private Integer firepremium;
     @Column(name = "CRIMEPERIL")
-    private int crimerperil;
+    private Integer crimerperil;
     @Column(name = "CRIMEPREMIUM")
-    private int crimepremium;
+    private Integer crimepremium;
     @Column(name = "FLOODPERIL")
-    private int floodperil;
+    private Integer floodperil;
     @Column(name = "FLOODPREMIUM")
-    private int floodpremium;
+    private Integer floodpremium;
     @Column(name = "WEATHERPERIL")
-    private int weatherperil;
+    private Integer weatherperil;
     @Column(name = "WEATHERPREMIUM")
-    private int weatherpremium;
+    private Integer weatherpremium;
     @Column(name = "STATUS")
-    private int status;
+    private Integer status;
     @Column(name = "REJECTIONREASON")
     private String rejectionreason;
 

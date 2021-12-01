@@ -13,5 +13,5 @@ import com.bluescript.demo.entity.PolicyEntity;
 public interface ISelectPolicyLastChangedJpa extends JpaRepository<PolicyEntity, Integer> {
 
     @Query(value = "SELECT LASTCHANGED as caLastchanged FROM POLICY WHERE POLICYNUMBER = :db2PolicynumInt", nativeQuery = true)
-    Timestamp getPolicyByDb2PolicynumInt(@Param("db2PolicynumInt") int db2PolicynumInt);
+    String getPolicyByDb2PolicynumInt(@Param("db2PolicynumInt") int db2PolicynumInt);
 }

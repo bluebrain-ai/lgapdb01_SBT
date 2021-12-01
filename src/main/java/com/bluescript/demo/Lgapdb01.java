@@ -137,6 +137,9 @@ public class Lgapdb01 {
 
         // }
         BeanUtils.copyProperties(payload, dfhcommarea);
+
+        log.warn("payload:" + payload);
+
         wsRequiredCaLen = wsCaHeaderLen + wsRequiredCaLen;
 
         switch (dfhcommarea.getCaRequestId()) {
@@ -232,7 +235,7 @@ public class Lgapdb01 {
         emVariable.setEmPolNum((int) dfhcommarea.getCaPolicyRequest().getCaPolicyNum());
 
         try {
-            Timestamp lastChanged = selectPolicyLastDate.getPolicyByDb2PolicynumInt(db2PolicynumInt);
+            String lastChanged = selectPolicyLastDate.getPolicyByDb2PolicynumInt(db2PolicynumInt);
             dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().setCaLastchanged(lastChanged);
 
         } catch (Exception e) {

@@ -32,7 +32,8 @@ public class PolicyEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CUST_SEQ")
+    @SequenceGenerator(sequenceName = "POLICY_SEQUENCE", allocationSize = 1, name = "CUST_SEQ")
     @Column(name = "POLICYNUMBER")
     private Integer policyNumber;
     @Column(name = "CUSTOMERNUMBER")
@@ -44,7 +45,7 @@ public class PolicyEntity implements Serializable {
     @Column(name = "POLICYTYPE")
     private String policytype;
     @Column(name = "LASTCHANGED")
-    private Date lastchanged;
+    private Timestamp lastchanged;
     @Column(name = "BROKERID")
     private Integer brokerid;
     @Column(name = "BROKERSREFERENCE")
