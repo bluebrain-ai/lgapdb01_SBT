@@ -195,6 +195,7 @@ public class Lgapdb01 {
             dfhcommarea = lgapvs01Resp.block();
         } catch (Exception e) {
             log.error(e);
+            throw new RuntimeException("ISSUE With LGAPVS01");
         }
 
         return new ResponseEntity<>(dfhcommarea, HttpStatus.OK);
@@ -205,6 +206,8 @@ public class Lgapdb01 {
 
         db2InIntegers.setDb2BrokeridInt((int) dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaBrokerid());
         db2InIntegers.setDb2PaymentInt(dfhcommarea.getCaPolicyRequest().getCaPolicyCommon().getCaPayment());
+        db2InIntegers.setDb2CustomernumInt((int) dfhcommarea.getCaCustomerNum());
+
         emVariable.setEmSqlreq(" INSERT POLICY");
         try {
             InsertPolicyJpa.insertPolicyForDb2CustomernumIntAndCaIssueDateAndCaExpiryDate(
